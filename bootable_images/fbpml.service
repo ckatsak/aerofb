@@ -1,0 +1,27 @@
+#
+# ckatsak, Tue Nov 18 04:09:10 PM EET 2025
+#
+
+[Unit]
+Description=snaplace-fbpml agent
+# NOTE(ckatsak): `network.target` should suffice for us, and be faster, but
+# `network-online.target` is probably safer.
+#After=network-online.target
+After=network.target
+#Wants=
+StartLimitIntervalSec=2
+SuccessAction=reboot
+
+[Service]
+Type=simple
+Restart=always
+#RestartSec=
+WorkingDirectory=/bench
+#User=
+#Group=
+#Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/local/bin/gunicorn -b "0.0.0.0:80" -w 1 "server_flask:app"
+
+[Install]
+Alias=snaplace-fbpml
+WantedBy=multi-user.target

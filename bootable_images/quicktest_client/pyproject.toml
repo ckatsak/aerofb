@@ -1,0 +1,10 @@
+[project]
+name = "quicktest-client"
+version = "0.0.1"
+description = "Testing client for Flask-based snaplace-fbpml Functions, with hardcoded inputs"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.3.0",
+    "requests>=2.32.5",
+]
