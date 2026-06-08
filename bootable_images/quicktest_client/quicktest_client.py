@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #
 # ckatsak, Thu Nov 13 02:27:05 PM EET 2025
+# ckatsak, Sun Jun  7 06:28:24 PM EEST 2026
 
 import json
 import os
@@ -23,7 +24,7 @@ import requests
 )
 @click.argument("bench", required=True)
 def invoke(host_port: str, bench: str) -> int:
-    url = f"http://{host_port}/"
+    url = f"http://{host_port}/invoke"
     click.secho(f"URL: {url}", fg="blue")
     click.secho(f"INPUT: {json.dumps(TEST_INPUT[bench])}", fg="yellow")
 

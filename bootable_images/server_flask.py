@@ -1,5 +1,6 @@
 #
 # ckatsak, Thu Nov 13 05:51:21 AM EET 2025
+# ckatsak, Sun Jun  7 06:28:24 PM EEST 2026
 #
 
 import json
@@ -12,7 +13,7 @@ from werkzeug.exceptions import HTTPException
 try:
     import ptpsync
 except ImportError:
-    pass
+    app.logger.warn("Module ptpsync not found")
 
 
 HEADER_KEY_HANDLER_DURATION = "handler-duration-ns"
@@ -22,7 +23,7 @@ HEADER_KEY_RESPONSE_DURATION = "response-duration-ns"
 app = Flask(__name__)
 
 
-@app.route("/", methods=["POST"])
+@app.route("/invoke", methods=["POST"])
 def invoke():
     response_start = time.perf_counter_ns()
     app.logger.debug("New invocation request...")

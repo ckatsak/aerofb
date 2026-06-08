@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # ckatsak, Thu Nov 13 05:51:21 AM EET 2025
+# ckatsak, Sun Jun  7 06:28:24 PM EEST 2026
 #
 # Based on:
 # - <https://github.com/cslab-ntua/fbpml-systor22/blob/main/scripts/build_rootfs_multi.sh>
@@ -84,6 +85,7 @@ mount -v "$ROOTFS_IMG" "$ROOTFS_TMP_MP"
 docker run --rm \
 	--hostname "${BENCH//_/-}-uvm" \
 	--volume "${PWD}/server_flask.py":/bench/server_flask.py \
+	--volume "${PWD}/ptpsync.py":/bench/ptpsync.py \
 	--volume "${SCRIPT_DIR}/overlay-init":/sbin/overlay-init \
 	--volume "${SVC_FILE[$DISTRO]}":"${SVC_TARGET[$DISTRO]}" \
 	--volume "${POPULATE_SCRIPT[$DISTRO]}":/populate.sh \

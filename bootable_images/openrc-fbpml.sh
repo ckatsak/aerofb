@@ -1,12 +1,13 @@
 #!/sbin/openrc-run
 #
 # ckatsak, Thu Nov 13 05:51:21 AM EET 2025
+# ckatsak, Sun Jun  7 06:28:24 PM EEST 2026
 
 name=$RC_SVCNAME
 description="snaplace-fbpml agent"
 supervisor="supervise-daemon"
 command="/usr/local/bin/gunicorn"
-command_args="-b 0.0.0.0:80 -w 1 'server_flask:app'"
+command_args="-b 0.0.0.0:8000 -w 1 'server_flask:app'"
 directory="/bench"
 command_user="root:root"
 pidfile="/run/$RC_SVCNAME.pid"

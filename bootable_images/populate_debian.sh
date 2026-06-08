@@ -16,21 +16,8 @@ apt-get update && apt-get install -y --no-install-recommends \
 	systemd systemd-sysv udev procps \
 	iproute2 iputils-ping ca-certificates curl tar
 
-## NOTE(ckatsak): these symlinks are required only for `rnn_serving`
-#ln -vs /opt/bitnami/python/bin/pip /usr/local/bin/ || true
-#pip install --no-cache-dir Flask gunicorn
-#ln -vs /opt/bitnami/python/bin/gunicorn /usr/local/bin/ || true
-## NOTE(ckatsak): these symlinks are required only for `cnn_serving`
-#ln -vs /home/ubuntu/python3-venv/bin/pip /usr/local/bin/ || true
-#ln -vs /home/ubuntu/python3-venv/bin/gunicorn /usr/local/bin/ || true
-##
-#if [[ -x '/opt/bitnami/python/bin/pip' ]]; then
-#	ln -vs /opt/bitnami/python/bin/pip /usr/local/bin/ || true
-#elif [[ -x '/home/ubuntu/python3-venv/bin/pip' ]]; then
-#	ln -vs /home/ubuntu/python3-venv/bin/pip /usr/local/bin/ || true
-#fi
-pip install --no-cache-dir Flask gunicorn
 #pip --no-cache-dir install -i https://test.pypi.org/simple/ ptpsync
+pip install --no-cache-dir Flask gunicorn
 if [[ -x '/opt/bitnami/python/bin/gunicorn' ]]; then
 	# required only for `rnn_serving`/aarch64
 	ln -vst /usr/local/bin/ /opt/bitnami/python/bin/gunicorn || true
@@ -123,6 +110,9 @@ chmod -v 0644      "$UVM_ROOTFS/etc/systemd/system/fbpml.service"
 
 chown -v root:root "$UVM_ROOTFS/bench/server_flask.py"
 chmod -v 0755      "$UVM_ROOTFS/bench/server_flask.py"
+
+chown -v root:root "$UVM_ROOTFS/bench/ptpsync.py"
+#chmod -v 0755      "$UVM_ROOTFS/bench/ptpsync.py"
 
 # Populate `/etc/resolv.conf`.  According to nfsroot.txt, we may just symlink.
 ln -vsf /proc/net/pnp "$UVM_ROOTFS/etc/resolv.conf"

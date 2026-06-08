@@ -1,5 +1,6 @@
 #
 # ckatsak, Tue Nov 18 04:09:10 PM EET 2025
+# ckatsak, Sun Jun  7 06:28:24 PM EEST 2026
 #
 
 [Unit]
@@ -20,7 +21,7 @@ WorkingDirectory=/bench
 #User=
 #Group=
 #Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/local/bin/gunicorn -b "0.0.0.0:80" -w 1 "server_flask:app"
+ExecStart=/usr/local/bin/gunicorn -b "0.0.0.0:8000" -w 1 "server_flask:app"
 
 [Install]
 Alias=snaplace-fbpml

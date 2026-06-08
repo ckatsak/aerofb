@@ -13,8 +13,8 @@ set -eu
 
 apk add --no-cache openrc util-linux
 
-pip install --no-cache-dir Flask gunicorn
 #pip --no-cache-dir install -i https://test.pypi.org/simple/ ptpsync
+pip install --no-cache-dir Flask gunicorn
 
 # Configure targets & services to load at boot
 ln -s agetty /etc/init.d/agetty.ttyS0
@@ -64,6 +64,9 @@ chmod -v 0755      "$UVM_ROOTFS/etc/init.d/fbpml"
 
 chown -v root:root "$UVM_ROOTFS/bench/server_flask.py"
 chmod -v 0755      "$UVM_ROOTFS/bench/server_flask.py"
+
+chown -v root:root "$UVM_ROOTFS/bench/ptpsync.py"
+#chmod -v 0755      "$UVM_ROOTFS/bench/ptpsync.py"
 
 # Populate `/etc/resolv.conf`.  According to nfsroot.txt, we may just symlink.
 ln -vsf /proc/net/pnp "$UVM_ROOTFS/etc/resolv.conf"
