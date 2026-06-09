@@ -11,8 +11,9 @@ command_args="-b 0.0.0.0:8000 -w 1 'server_flask:app'"
 directory="/bench"
 command_user="root:root"
 pidfile="/run/$RC_SVCNAME.pid"
-output_log="/var/log/$RC_SVCNAME.stdout"
-error_log="/var/log/$RC_SVCNAME.stderr"
+
+# Tell supervise-daemon to redirect stdout and stderr to the console:
+supervise_daemon_args="--stdout /dev/ttyS0 --stderr /dev/ttyS0"
 
 depend() {
 	#need net
