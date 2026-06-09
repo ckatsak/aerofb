@@ -39,9 +39,20 @@ def invoke():
                 exc_info=True,
             )
 
-    function_input = request.get_json(force=True)
+    raw_body = request.get_data(cache=False)
+
+    try:
+        legacy_function_input = json.loads(raw_body)
+    except json.JSONDecodeError:
+        legacy_function_input = None
+
+    if isinstance(legacy_function_input, dict) and "payload" in legacy_function_input:
+        function_input = legacy_function_input
+        function_input["payload"] = bytes(function_input["payload"])
+    else:
+        function_input = {"payload": raw_body}
+
     app.logger.debug(f"function_input: {function_input}")
-    function_input["payload"] = bytes(function_input["payload"])
 
     app.logger.debug("Calling function handler...")
     handler_start = time.perf_counter_ns()
