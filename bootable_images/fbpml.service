@@ -21,7 +21,7 @@ WorkingDirectory=/bench
 #User=
 #Group=
 #Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/local/bin/gunicorn -b "0.0.0.0:8000" -w 1 "server_flask:app"
+ExecStart=/usr/local/bin/gunicorn -b "0.0.0.0:8000" -w 1 -t 0 "server_flask:app"
 
 [Install]
 Alias=snaplace-fbpml
