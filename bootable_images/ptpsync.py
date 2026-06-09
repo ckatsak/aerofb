@@ -72,7 +72,7 @@ PTP_CLOCK_CAPS_SIZE = 80
 PTP_CLOCK_GETCAPS = _IOR(PTP_CLK_MAGIC, 1, PTP_CLOCK_CAPS_SIZE)
 
 
-PathLike = Union[str, bytes, os.PathLike[str], os.PathLike[bytes]]
+PathLike = Union[str, bytes, os.PathLike]
 
 
 def clock_to_sys(
