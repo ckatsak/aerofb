@@ -37,6 +37,13 @@ base-images:
 
 ###############################################################################
 
+# Build every bootable rootfs image from its corresponding OCI image.
+bootable_images: $(BENCHES)
+$(BENCHES):
+	$(MAKE) TAG=$(TAG) -C bootable_images $(shell basename $@)
+
+###############################################################################
+
 .PHONY: clean clean-images distclean
 
 clean:
